@@ -8,6 +8,7 @@ __pycache__/
 
 # allure reports
 allure-results
+allure-report
 
 # Distribution / packaging
 .Python
