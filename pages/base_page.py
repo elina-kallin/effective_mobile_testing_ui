@@ -37,3 +37,18 @@ class BasePage:
 
     def find_elements(self, parent):
         return self.driver.find_elements(*parent)
+    
+    def get_url(self):
+        return self.driver.current_url
+    
+    def wait_url_to_be(self, url, timeout=10):
+        wait(self.driver, timeout).until(
+            EC.url_to_be(url)
+        )
+        return self.driver.current_url
+
+    def wait_url_contains(self, part, timeout=10):
+        wait(self.driver, timeout).until(
+            EC.url_contains(part)
+        )
+        return self.driver.current_url
