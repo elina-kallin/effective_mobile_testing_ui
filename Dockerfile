@@ -20,4 +20,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-CMD pytest --alluredir=allure-results && allure generate allure-results -o allure-report --clean
+CMD pytest --alluredir=allure-results && allure serve -h 0.0.0.0 -p 28081 allure-results
