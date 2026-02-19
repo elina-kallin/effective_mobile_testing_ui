@@ -6,8 +6,6 @@ services:
     container_name: selenoid
     ports:
       - "4444:4444"
-    networks:
-      - bridge
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
       - "./config:/etc/selenoid"
