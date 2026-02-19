@@ -9,7 +9,7 @@ services:
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
       - "./config:/etc/selenoid"
-    command: [ "-conf", "/etc/selenoid/browsers.json", "-disable-docker" ]
+    command: [ "-conf", "/etc/selenoid/browsers.json" ]
 
   tests:
     build: .
