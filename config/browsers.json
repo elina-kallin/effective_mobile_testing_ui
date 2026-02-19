@@ -1,6 +1,6 @@
 {
     "firefox": {
-        "default": "latest",
+        "default": "124.0",
         "versions": {
             "latest": {
                 "image": "selenoid/firefox:latest",
