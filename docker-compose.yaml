@@ -14,7 +14,7 @@ services:
       # - "-container-network"
       # - "ci_3_allure_email_default"
       - "-service-startup-timeout"
-      - "2m"
+      - "10s"
 
   selenoid-ui:
     image: aerokube/selenoid-ui:latest
