@@ -3,7 +3,6 @@ version: '3.8'
 services:
   selenoid:
     image: aerokube/selenoid:latest
-    container_name: selenoid
     ports:
       - "4444:4444"
     volumes:
@@ -12,14 +11,13 @@ services:
     command:
       - "-conf"
       - "/etc/selenoid/browsers.json"
-      - "-container-network"
-      - "ci_3_allure_email_default"
+      # - "-container-network"
+      # - "ci_3_allure_email_default"
       - "-service-startup-timeout"
       - "2m"
 
   selenoid-ui:
     image: aerokube/selenoid-ui:latest
-    container_name: selenoid-ui
     ports:
       - "8081:8080"
     depends_on:
@@ -28,7 +26,6 @@ services:
 
   tests:
     build: .
-    container_name: tests
     depends_on:
       - selenoid
       - selenoid-ui
