@@ -6,6 +6,21 @@
                 "image": "selenoid/firefox:124.0",
                 "port": "4444",
                 "path": "/wd/hub"
+            },
+            "63.0":{
+                "image": "selenoid/firefox:63.0",
+                "port": "4444",
+                "path": "/wd/hub"   
+            }
+        }
+    },
+    "chrome": {
+        "default": "128.0",
+        "versions": {
+            "128.0": {
+                "image": "selenoid/chrome:128.0",
+                "port": "4444",
+                "path": "/wd/hub"
             }
         }
     }
