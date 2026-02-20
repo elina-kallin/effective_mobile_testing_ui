@@ -1,14 +1,9 @@
 {
     "firefox": {
-        "default": "latest",
+        "default": "124.0",
         "versions": {
-            "latest": {
-                "image": "selenoid/vnc_firefox:124.0",
-                "port": "4444",
-                "path": "/wd/hub"
-            },
             "124.0": {
-                "image": "selenoid/vnc_firefox:124.0",
+                "image": "selenoid/firefox:124.0",
                 "port": "4444",
                 "path": "/wd/hub"
             }
