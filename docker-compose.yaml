@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  selenoid:
+    image: aerokube/selenoid:latest
+    container_name: selenoid
+    ports:
+      - "4444:4444"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "./config:/etc/selenoid"
+    command:
+      - "-conf"
+      - "/etc/selenoid/browsers.json"
+      - "-container-network"
+      - "ci_3_allure_email_default"
+      - "-service-startup-timeout"
+      - "2m"
+
+  selenoid-ui:
+    image: aerokube/selenoid-ui:latest
+    container_name: selenoid-ui
+    ports:
+      - "8081:8080"
+    depends_on:
+      - selenoid
+    command: [ "--selenoid-uri", "http://selenoid:4444" ]
+
+  tests:
+    build: .
+    container_name: tests
+    depends_on:
+      - selenoid
+      - selenoid-ui
+    environment:
+      - SELENOID_REMOTE_URL=http://selenoid:4444/wd/hub
+    volumes:
+      - ./allure-results:/app/allure-results
