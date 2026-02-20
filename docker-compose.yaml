@@ -11,8 +11,8 @@ services:
     command:
       - "-conf"
       - "/etc/selenoid/browsers.json"
-      # - "-container-network"
-      # - "ci_3_allure_email_default"
+      - "-container-network"
+      - "ci_3_allure_email_default"
       - "-service-startup-timeout"
       - "10s"
 
