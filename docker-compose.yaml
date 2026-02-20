@@ -21,7 +21,7 @@ services:
     image: aerokube/selenoid-ui:latest
     container_name: selenoid-ui
     ports:
-      - "8080:8080"
+      - "8081:8080"
     depends_on:
       - selenoid
     command: [ "--selenoid-uri", "http://selenoid:4444" ]
