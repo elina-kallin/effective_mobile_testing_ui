@@ -17,11 +17,21 @@ services:
       - "-service-startup-timeout"
       - "2m"
 
+  selenoid-ui:
+    image: aerokube/selenoid-ui:latest
+    container_name: selenoid-ui
+    ports:
+      - "8081:8080"
+    depends_on:
+      - selenoid
+    command: [ "--selenoid-uri", "http://selenoid:4444" ]
+
   tests:
     build: .
     container_name: tests
     depends_on:
       - selenoid
+      - selenoid-ui
     environment:
       - SELENOID_REMOTE_URL=http://selenoid:4444/wd/hub
     volumes:
