@@ -12,7 +12,7 @@ def browser():
     selenoid_options = {
         "enableVNC": True, 
         "enableVideo": False,
-        # "screenResolution": "1280x1024x24"  
+        "screenResolution": "1280x1024x24"  
     }
 
     options.set_capability("browserName", "firefox")
