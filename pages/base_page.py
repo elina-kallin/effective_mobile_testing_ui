@@ -1,0 +1,54 @@
+from selenium.webdriver.support.ui import WebDriverWait as wait
+from selenium.webdriver.support import expected_conditions as EC
+
+
+class BasePage:
+    def __init__(self, driver):
+        self.driver = driver
+        self.wait = wait(driver, 5)
+
+    def open(self, url):
+        self.driver.get(url)
+
+    def find_element(self, locator):
+        return self.wait.until(EC.presence_of_element_located(locator))
+
+    def scroll_to_element(self, element):
+        self.driver.execute_script("arguments[0].scrollIntoView();", element)
+
+    def wait_until_visible(self, locator, timeout=10):
+        return wait(self.driver, timeout).until(
+            EC.visibility_of_element_located(locator)
+        )
+
+    def wait_until_clicable(self, locator, timeout=10):
+        return wait(self.driver, timeout).until(EC.element_to_be_clickable(locator))
+
+    def fill_input(self, locator, keys):
+        input_field = self.wait_until_visible(locator)
+        input_field.click()
+        input_field.clear()
+        input_field.send_keys(keys)
+
+    def wait_for_alert(self, timeout=5):
+        wt = wait(self.driver, timeout)
+        alert = wt.until(EC.alert_is_present())
+        return alert
+
+    def find_elements(self, parent):
+        return self.driver.find_elements(*parent)
+    
+    def get_url(self):
+        return self.driver.current_url
+    
+    def wait_url_to_be(self, url, timeout=10):
+        wait(self.driver, timeout).until(
+            EC.url_to_be(url)
+        )
+        return self.driver.current_url
+
+    def wait_url_contains(self, part, timeout=10):
+        wait(self.driver, timeout).until(
+            EC.url_contains(part)
+        )
+        return self.driver.current_url
